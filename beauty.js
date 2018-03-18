@@ -46,10 +46,10 @@ module.exports = function(){
     /* Display one product for the specific purpose of updating product */
 
     router.get('/:id', function(req, res){
-        callbackCount = 0;
         console.log("aftercount!");
+        callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateProduct.js"];
+        context.jsscripts = ["updateproduct.js"];
         var mysql = req.app.get('mysql');
         getProduct(res, mysql, context, req.params.id, complete);
         function complete(){
