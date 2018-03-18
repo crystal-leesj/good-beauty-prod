@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getProduct(res, mysql, context, id, complete){
-        var sql = "SELECT id, name, brand, category, description, ingredient, comment FROM products WHERE id = ?";
+        var sql = "SELECT id, name, brand, category, description, ingredient FROM products WHERE id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -43,9 +43,21 @@ module.exports = function(){
         }
     });
 
-    /* Display one person for the specific purpose of updating people */
+    /* Display one product for the specific purpose of updating product */
 
-
+    router.get('/:id', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        // context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        var mysql = req.app.get('mysql');
+        getProduct(res, mysql, context, req.params.id, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('update-product', context);
+            }
+        }
+    });
 
     /* Adds a product, redirects to the product page after adding */
 
@@ -65,7 +77,20 @@ module.exports = function(){
 
     /* The URI that update data is sent to in order to update a person */
 
-
+    router.put('/:id', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE products SET name=?, brand=?, category=?, description=?, ingredient=? WHERE id=?";
+        var inserts = [req.body.name, req.body.brand, req.body.category, req.body.description, req.body.ingredient, req.params.id];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
 
