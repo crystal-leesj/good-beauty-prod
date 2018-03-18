@@ -47,6 +47,7 @@ module.exports = function(){
 
     router.get('/:id', function(req, res){
         callbackCount = 0;
+        console.log("aftercount!");
         var context = {};
         context.jsscripts = ["updateProduct.js"];
         var mysql = req.app.get('mysql');
