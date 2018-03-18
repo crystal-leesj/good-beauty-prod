@@ -32,7 +32,7 @@ module.exports = function(){
         console.log("READ ALL!!!");
         var callbackCount = 0;
         var context = {};
-        // context.jsscripts = ["deleteperson.js"];
+        context.jsscripts = ["deleteperson.js"];
         var mysql = req.app.get('mysql');
         getProducts(res, mysql, context, complete);
         function complete(){
@@ -40,7 +40,6 @@ module.exports = function(){
             if(callbackCount >= 1){
                 res.render('products', context);
             }
-
         }
     });
 
@@ -50,7 +49,7 @@ module.exports = function(){
         console.log("GET ROUT!!!");
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateproduct.js"];
+        context.jsscripts = ["updateproduct.js", "deleteperson.js"];
         var mysql = req.app.get('mysql');
         getProduct(res, mysql, context, req.params.id, complete);
         function complete(){
