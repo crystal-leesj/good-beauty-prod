@@ -79,6 +79,7 @@ module.exports = function(){
     /* The URI that update data is sent to in order to update a product */
 
     router.put('/:id', function(req, res){
+        console.log("REQBODY : ", req.body, "REQPARAM : ", req.params);
         var mysql = req.app.get('mysql');
         var sql = "UPDATE products SET name=?, brand=?, category=?, description=?, ingredient=? WHERE id=?";
         var inserts = [req.body.name, req.body.brand, req.body.category, req.body.description, req.body.ingredient, req.params.id];
