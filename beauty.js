@@ -46,7 +46,7 @@ module.exports = function(){
     /* Display one product for the specific purpose of updating product */
 
     router.get('/:id', function(req, res){
-        console.log("aftercount!");
+        console.log("GET ROUT!!!");
         callbackCount = 0;
         var context = {};
         context.jsscripts = ["updateproduct.js"];
