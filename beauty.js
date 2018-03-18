@@ -75,7 +75,7 @@ module.exports = function(){
         });
     });
 
-    /* The URI that update data is sent to in order to update a person */
+    /* The URI that update data is sent to in order to update a product */
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
