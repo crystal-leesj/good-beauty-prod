@@ -26,7 +26,7 @@ module.exports = function(){
         });
     }
 
-    /*Display all people. Requires web based javascript to delete users with AJAX*/
+    /*Display all the beauty products*/
 
     router.get('/', function(req, res){
         var callbackCount = 0;
@@ -47,9 +47,21 @@ module.exports = function(){
 
 
 
-    /* Adds a person, redirects to the people page after adding */
+    /* Adds a product, redirects to the product page after adding */
 
-
+    router.post('/', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO products (name, brand, category, description, ingredient, comment) VALUES (?,?,?,?,?,?)";
+        var inserts = [req.body.name, req.body.brand, req.body.category, req.body.description, req.body.ingredient, req.body.comment];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/beauty');
+            }
+        });
+    });
 
     /* The URI that update data is sent to in order to update a person */
 
