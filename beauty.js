@@ -29,6 +29,7 @@ module.exports = function(){
     /*Display all the beauty products*/
 
     router.get('/', function(req, res){
+        console.log("READ ALL!!!");
         var callbackCount = 0;
         var context = {};
         // context.jsscripts = ["deleteperson.js"];
