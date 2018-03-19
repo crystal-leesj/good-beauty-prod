@@ -26,6 +26,17 @@ module.exports = function(){
         });
     }
 
+    function getReviews(res, mysql, context, complete){
+        mysql.pool.query("SELECT review.id, name, comment FROM reviews", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.reviews = results;
+            complete();
+        });
+    }
+
     /*Display all the beauty products*/
 
     router.get('/', function(req, res){
@@ -110,6 +121,24 @@ module.exports = function(){
             }
         })
     })
+
+    /* Display one product to see reviews on specific product */
+
+    router.get('/reviews/:id', function(req, res){
+        console.log("Review ROUT!!!");
+        callbackCount = 0;
+        var context = {};
+        // context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
+        var mysql = req.app.get('mysql');
+        getProduct(res, mysql, context, req.params.id, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('update-product', context);
+            }
+        }
+    });
+
 
     return router;
 }();
