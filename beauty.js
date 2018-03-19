@@ -156,7 +156,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/beauty/reiews/'+req.params.id);
+                res.redirect('/beauty/reviews/'+req.params.id);
             }
         });
     });
