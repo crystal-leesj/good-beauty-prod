@@ -37,18 +37,18 @@ module.exports = function(){
             }
             context.product = results[0];
             context.reviews = results;
-            
+            var sql2 = "SELECT * FROM sellers INNER JOIN sell_products ON sell_products.pid = ?";
+            mysql.pool.query(sql2, [id], function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.product.seller = results[0];
+                console.log('context: ', context);
+                complete();
+            });
         });
-        sql = "SELECT * FROM sellers INNER JOIN sell_products ON sell_products.pid = ?";
-        mysql.pool.query(sql, [id], function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.product.seller = results[0];
-            console.log('context: ', context);
-            complete();
-        });
+        
     }
 
     function getSellers(res, mysql, context, complete){
