@@ -130,7 +130,7 @@ module.exports = function(){
         var context = {};
         // context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
         var mysql = req.app.get('mysql');
-        getProduct(res, mysql, context, req.params.id, complete);
+        getReviews(res, mysql, context, req.params.id, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
