@@ -157,11 +157,17 @@ module.exports = function(){
             }else{
                 // check password
                 console.log('results: ', results);
+                if (results.length < 1) {
+                    console.log('user name not found')
+                    return;
+                }
                 if (req.body.password != results[0].password){
+                    console.log('password not match')
                     return;
                 }
             }
         });
+        console.log('user matched')
         var sql = "INSERT INTO reviews (uid, pid, comment) VALUES (?,?,?)";
         var inserts = [1, req.params.id, req.body.comment];
         mysql.pool.query(sql,inserts,function(error, results, fields){
