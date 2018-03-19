@@ -27,7 +27,7 @@ module.exports = function(){
     }
 
     function getReviews(res, mysql, context, complete){
-        mysql.pool.query("SELECT review.id, name, comment FROM reviews", function(error, results, fields){
+        mysql.pool.query("SELECT reviews.id, name, comment FROM reviews", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
