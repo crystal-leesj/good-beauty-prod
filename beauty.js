@@ -49,6 +49,7 @@ module.exports = function(){
                 res.end();
             }
             context.sellers = results;
+            console.log('res for sellers: ', results);
             complete();
         });
     }
