@@ -27,7 +27,7 @@ module.exports = function(){
     }
 
     function getReviews(res, mysql, context, complete){
-        mysql.pool.query("SELECT reviews.id, comment, users.name FROM reviews INNER JOIN users ON reviews.id = users.id", function(error, results, fields){
+        mysql.pool.query("SELECT reviews.id, reviews.comment, users.name FROM reviews INNER JOIN users ON reviews.uid = users.id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
