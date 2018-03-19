@@ -60,7 +60,7 @@ module.exports = function(){
 
     router.get('/:id', function(req, res){
         console.log("GET one ROUT!!!");
-        callbackCount = 0;
+        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
         var mysql = req.app.get('mysql');
