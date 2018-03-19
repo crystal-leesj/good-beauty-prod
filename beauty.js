@@ -150,11 +150,11 @@ module.exports = function(){
         var inserts = [req.params.id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
-                console.log("CAN YOU DELETE??!!!");
                 res.write(JSON.stringify(error));
                 res.status(400);
                 res.end();
             }else{
+                console.log("CAN YOU DELETE??!!!");
                 var sql2 = "DELETE FROM products WHERE pid = ?";
                 mysql.pool.query(sql2, inserts, function(error, results, fields){
                     if(error){
