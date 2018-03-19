@@ -32,7 +32,7 @@ module.exports = function(){
         console.log("READ ALL!!!");
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js"];
+        context.jsscripts = ["deleteproduct.js"];
         var mysql = req.app.get('mysql');
         getProducts(res, mysql, context, complete);
         function complete(){
