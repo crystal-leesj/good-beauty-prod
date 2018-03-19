@@ -147,9 +147,10 @@ module.exports = function(){
     /* Adds a review, redirects to the product page after adding */
 
     router.post('/reviews/:id', function(req, res){
+        console.log("REQ BODY REVIWE:::", req.body);
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO reviews (uid, pid, comment) VALUES (?,?,?)";
-        var inserts = [1, req.body.comment, req.params.id];
+        var inserts = [1, req.params.id, req.body.comment];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
