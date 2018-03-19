@@ -21,14 +21,14 @@
     </thead>
     <tbody>
         {{#each products}} 
-        <tr>
+        <tr type="button" href="/beauty/reviews/{{id}}">
             <td>{{brand}}</td>
             <td>{{name}}</td>
             <td>{{category}}</td>
             <td>{{description}}</td>
             <td>{{ingredient}}</td>
-            <td><button type="button" class="btn btn-info"><a href="/beauty/{{id}}">Update</a></button></td>
-            <td><button type="button" class="btn btn-danger" onclick="deleteProduct({{id}})">Delete</button></td>
+            {{!-- <td><button type="button" class="btn btn-info"><a href="/beauty/{{id}}">Update</a></button></td> --}}
+            {{!-- <td><button type="button" class="btn btn-danger" onclick="deleteProduct({{id}})">Delete</button></td> --}}
         </tr>
         {{/each}}
     </tbody>
