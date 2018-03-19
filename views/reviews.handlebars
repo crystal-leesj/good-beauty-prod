@@ -11,7 +11,7 @@
     <tbody>
         {{#each reviews}} 
         <tr>
-            <td>name</td>
+            <td>{{uid}}</td>
             <td>{{comment}}</td>
             <td><button type="button" class="btn btn-danger" onclick="deleteReview({{rid}})">Delete</button></td>
         </tr>
