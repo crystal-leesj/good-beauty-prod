@@ -156,6 +156,7 @@ module.exports = function(){
                 return;
             }else{
                 // check password
+                console.log('results: ', results);
                 if (req.body.password != results[0].password){
                     return;
                 }
