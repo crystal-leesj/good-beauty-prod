@@ -133,7 +133,7 @@ module.exports = function(){
         console.log("Review ROUT!!!");
         var callbackCount = 0;
         var context = {};
-        // context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
+        context.jsscripts = ["deletereview.js"];
         var mysql = req.app.get('mysql');
         getReviews(res, mysql, context, req.params.id, complete);
         function complete(){
