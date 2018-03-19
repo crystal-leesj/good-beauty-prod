@@ -159,11 +159,13 @@ module.exports = function(){
                 console.log('results: ', results);
                 if (results.length < 1) {
                     console.log('user name not found')
-                    return;
+                    res.write('user name not found');
+                    res.end();
                 }
                 if (req.body.password != results[0].password){
                     console.log('password not match')
-                    return;
+                    res.write('password not match');
+                    res.end();
                 }
             }
         });
