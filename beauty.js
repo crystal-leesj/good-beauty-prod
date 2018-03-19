@@ -43,7 +43,7 @@ module.exports = function(){
                     res.write(JSON.stringify(error));
                     res.end();
                 }
-                context.product.seller = results[0];
+                context.product.sellers = results;
                 console.log('context: ', context);
                 complete();
             });
