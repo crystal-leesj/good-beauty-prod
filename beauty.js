@@ -160,12 +160,10 @@ module.exports = function(){
                 if (results.length < 1) {
                     console.log('user name not found')
                     res.write('user name not found');
-                    res.end();
                 }
                 if (req.body.password != results[0].password){
                     console.log('password not match')
                     res.write('password not match');
-                    res.end();
                 }
             }
         });
