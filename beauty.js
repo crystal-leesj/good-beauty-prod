@@ -27,13 +27,14 @@ module.exports = function(){
     }
 
     function getReviews(res, mysql, context, complete){
+        console.log("REAL ALL REVIEWSS");
         mysql.pool.query("SELECT reviews.id, reviews.comment, users.name FROM reviews INNER JOIN users ON reviews.uid = users.id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
             context.reviews = results;
-            console.log(complete());
+            console.log("COM:: ", complete());
             complete();
         });
     }
