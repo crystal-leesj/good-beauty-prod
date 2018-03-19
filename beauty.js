@@ -34,7 +34,6 @@ module.exports = function(){
                 res.end();
             }
             context.reviews = results;
-            console.log("COM:: ", complete());
             complete();
         });
     }
