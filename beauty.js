@@ -28,7 +28,7 @@ module.exports = function(){
 
     function getReviews(res, mysql, context, id, complete){
         console.log("REAL ALL REVIEWSS");
-        var sql = "SELECT products.id, products.brand, products.name, comment, reviews.id AS rid FROM products INNER JOIN reviews ON products.id = reviews.pid WHERE products.id = ?";
+        var sql = "SELECT products.id, products.brand, products.name, comment, reviews.id AS rid, users.name AS username FROM products INNER JOIN reviews ON products.id = reviews.pid INNER JOIN users ON reviews.uid = users.id WHERE products.id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
