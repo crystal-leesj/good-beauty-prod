@@ -155,7 +155,7 @@ module.exports = function(){
                 res.end();
             }else{
                 console.log("CAN YOU DELETE??!!!");
-                var sql2 = "DELETE FROM products WHERE pid = ?";
+                var sql2 = "DELETE FROM products WHERE id = ?";
                 mysql.pool.query(sql2, inserts, function(error, results, fields){
                     if(error){
                         res.write(JSON.stringify(error));
