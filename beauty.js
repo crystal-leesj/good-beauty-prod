@@ -35,7 +35,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.reviews = results;
+            context.reviews = results[0];
             console.log('res: ', results);
             complete();
         });
