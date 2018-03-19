@@ -28,7 +28,7 @@ module.exports = function(){
 
     function getReviews(res, mysql, context, id, complete){
         console.log("REAL ALL REVIEWSS");
-        var sql = "SELECT products.id, products.brand, products.name, comment, reviews.id AS rid, users.name AS username FROM products INNER JOIN reviews ON products.id = reviews.pid INNER JOIN users ON reviews.uid = users.id WHERE products.id = ?";
+        var sql = "SELECT products.id, products.brand, products.name, comment, reviews.id AS rid, users.name AS username FROM products INNER JOIN reviews ON products.id = reviews.pid INNER JOIN users ON reviews.uid = users.id WHERE products.id = ?";    
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -37,7 +37,16 @@ module.exports = function(){
             }
             context.product = results[0];
             context.reviews = results;
-            console.log('res: ', results);
+            
+        });
+        sql = "SELECT * FROM sellers INNER JOIN sell_products ON sell_products.pid = ?";
+        mysql.pool.query(sql, [id], function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.product.seller = results[0];
+            console.log('context: ', context);
             complete();
         });
     }
