@@ -149,9 +149,21 @@ module.exports = function(){
     router.post('/reviews/:id', function(req, res){
         console.log("REQ BODY Params:::", req.params);
         var mysql = req.app.get('mysql');
+        var userSql = "SELECT * FROM users WHERE name = ?";
+        mysql.pool.query(userSql,[req.body.name],function(error, results, fields){
+            if(error){
+                console.log('err: ', error);
+                return;
+            }else{
+                // check password
+                if (req.body.password != results[0].password){
+                    return;
+                }
+            }
+        });
         var sql = "INSERT INTO reviews (uid, pid, comment) VALUES (?,?,?)";
         var inserts = [1, req.params.id, req.body.comment];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+        mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
