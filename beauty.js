@@ -146,15 +146,24 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM products WHERE id = ?";
+        var sql = "DELETE FROM sell_products WHERE pid = ?";
         var inserts = [req.params.id];
-        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+        mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.status(400);
                 res.end();
             }else{
-                res.status(202).end();
+                var sql2 = "DELETE FROM products WHERE pid = ?";
+                mysql.pool.query(sql2, inserts, function(error, results, fields){
+                    if(error){
+                        res.write(JSON.stringify(error));
+                        res.status(400);
+                        res.end();
+                    }else{
+                        res.status(202).end();
+                    }
+                })
             }
         })
     })
