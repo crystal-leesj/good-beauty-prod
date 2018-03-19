@@ -150,6 +150,7 @@ module.exports = function(){
         console.log("REQ BODY Params:::", req.params);
         var mysql = req.app.get('mysql');
         var userSql = "SELECT * FROM users WHERE name = ?";
+        var uid;
         mysql.pool.query(userSql,[req.body.name],function(error, results, fields){
             if(error){
                 console.log('err: ', error);
@@ -167,11 +168,12 @@ module.exports = function(){
                     res.write('password not match');
                     res.end();
                 }
+                uid = results[0].id;
             }
         });
-        console.log('user matched')
+        console.log('user matched: ', uid)
         var sql = "INSERT INTO reviews (uid, pid, comment) VALUES (?,?,?)";
-        var inserts = [1, req.params.id, req.body.comment];
+        var inserts = [uid, req.params.id, req.body.comment];
         mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
