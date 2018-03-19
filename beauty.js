@@ -145,6 +145,7 @@ module.exports = function(){
     /* Route to delete a product, simply returns a 202 upon success. Ajax will handle this. */
 
     router.delete('/:id', function(req, res){
+        console.log("CAN YOU DELETE??!!!");
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM sell_products WHERE pid = ?";
         var inserts = [req.params.id];
