@@ -1,6 +1,5 @@
 <h1>Good BEAUTY PRODUCTS:</h1>
 
-
 <h1>Beauty Bucket List</h1>
 <p>These featured items are "Good" beauty products contains no hazard ingredients.</p>
 <p>Viewers can veiw the items and can give feedback on them.</p>
@@ -65,6 +64,14 @@
             <div class="col-sm-10">
                 <input type="textarea" class="form-control" id="ingredient" placeholder="Enter Ingredients" name="ingredient">
             </div>
+        </div>
+        <div class="form-group">
+            <label for="seller" class="control-label col-sm-2">Seller:</label>
+            <select class="form-control" id="seller" name="seller">
+                {{#each sellers}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
         </div>
         <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
