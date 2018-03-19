@@ -33,6 +33,7 @@ module.exports = function(){
                 res.end();
             }
             context.reviews = results;
+            console.log(complete());
             complete();
         });
     }
