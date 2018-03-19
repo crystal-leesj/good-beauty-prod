@@ -42,18 +42,31 @@ module.exports = function(){
         });
     }
 
+    function getSellers(res, mysql, context, complete){
+        mysql.pool.query("SELECT sellers.id, name, link FROM sellers", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.sellers = results;
+            complete();
+        });
+    }
+
     /*Display all the beauty products*/
 
     router.get('/', function(req, res){
         console.log("READ ALL!!!");
+        console.log("req   :", req.body);
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteproduct.js"];
         var mysql = req.app.get('mysql');
         getProducts(res, mysql, context, complete);
+        getSellers(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('products', context);
             }
         }
