@@ -112,7 +112,7 @@ module.exports = function(){
                 // console.log("POST RESUT::   ",results.insertId);
                 var sellProd = "INSERT INTO sell_products (sid, pid) VALUES (?,?)";
                 var ins = [req.body.seller, results.insertId];
-                mysql.pool.query(sql,inserts,function(error, results, fields){
+                mysql.pool.query(sellProd,inserts,function(error, results, fields){
                     if(error){
                         res.write(JSON.stringify(error));
                         res.end();
