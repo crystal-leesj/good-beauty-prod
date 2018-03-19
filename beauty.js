@@ -26,7 +26,7 @@ module.exports = function(){
         });
     }
 
-    function getReviews(res, mysql, context, complete){
+    function getReviews(res, mysql, context, id, complete){
         console.log("REAL ALL REVIEWSS");
         mysql.pool.query("SELECT reviews.id, comment FROM reviews", function(error, results, fields){
             if(error){
