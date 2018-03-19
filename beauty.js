@@ -49,7 +49,7 @@ module.exports = function(){
         console.log("GET one ROUT!!!");
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateproduct.js", "deleteperson.js"];
+        context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
         var mysql = req.app.get('mysql');
         getProduct(res, mysql, context, req.params.id, complete);
         function complete(){
