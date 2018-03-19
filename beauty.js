@@ -95,15 +95,22 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO products (name, brand, category, description, ingredient) VALUES (?,?,?,?,?)";
         var inserts = [req.body.name, req.body.brand, req.body.category, req.body.description, req.body.ingredient];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+        mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                console.log("POST RESUT::   ",results.insertId);
-                // var sellProd = "INSERT INTO sell_products (sid, pid) VALUES (?,?)";
-                // var ins = [req.body.seller, ];
-                res.redirect('/beauty');
+                // console.log("POST RESUT::   ",results.insertId);
+                var sellProd = "INSERT INTO sell_products (sid, pid) VALUES (?,?)";
+                var ins = [req.body.seller, results.insertId];
+                mysql.pool.query(sql,inserts,function(error, results, fields){
+                    if(error){
+                        res.write(JSON.stringify(error));
+                        res.end();
+                    }else{
+                        res.redirect('/beauty');
+                    }
+                })
             }
         });
     });
