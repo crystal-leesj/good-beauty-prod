@@ -185,6 +185,7 @@ module.exports = function(){
     /* Route to delete a review, simply returns a 202 upon success. Ajax will handle this. */
 
     router.delete('/reviews/:id', function(req, res){
+        console.log("DELETE???");
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM reviews WHERE id = ?";
         var inserts = [req.params.id];
