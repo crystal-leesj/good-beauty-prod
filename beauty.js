@@ -144,6 +144,21 @@ module.exports = function(){
         }
     });
 
+    /* Adds a review, redirects to the product page after adding */
+
+    router.post('/reviews/:id', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO reviews (uid, pid, comment) VALUES (?,?,?)";
+        var inserts = [1, req.body.comment, req.params.id];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/beauty:id');
+            }
+        });
+    });
 
     return router;
 }();
