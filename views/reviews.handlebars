@@ -1,4 +1,4 @@
-<h1>Reviews on {{reviews.brand}} {{reviews.name}}:</h1>
+<h1>Reviews on {{product.brand}} {{product.name}}:</h1>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -9,14 +9,14 @@
         </tr>
     </thead>
     <tbody>
-        {{!-- {{#each reviews}}  --}}
+        {{#each reviews}} 
         <tr>
             <td>name</td>
-            <td>{{reviews.comment}}</td>
+            <td>{{comment}}</td>
             {{!-- <td><button type="button" class="btn btn-info"><a href="/beauty/{{id}}">Update</a></button></td>
             <td><button type="button" class="btn btn-danger" onclick="deleteProduct({{id}})">Delete</button></td> --}}
         </tr>
-        {{!-- {{/each}} --}}
+        {{/each}}
     </tbody>
     <br>
     <button class="btn btn-default"><a href="/beauty">Go Back</a></button>
