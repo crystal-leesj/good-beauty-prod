@@ -44,7 +44,7 @@ module.exports = function(){
                     res.end();
                 }
                 context.product.sellers = results;
-                console.log('context: ', context);
+                console.log('context: ', context.product.sellers );
                 complete();
             });
         });
