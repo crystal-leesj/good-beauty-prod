@@ -57,7 +57,7 @@ module.exports = function(){
 
     router.get('/', function(req, res){
         console.log("READ ALL!!!");
-        console.log("req   :", req.body);
+        console.log("res   :", res.body);
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteproduct.js"];
