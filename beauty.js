@@ -128,7 +128,7 @@ module.exports = function(){
 
     router.get('/reviews/:id', function(req, res){
         console.log("Review ROUT!!!");
-        callbackCount = 0;
+        var callbackCount = 0;
         var context = {};
         // context.jsscripts = ["updateproduct.js", "deleteproduct.js"];
         var mysql = req.app.get('mysql');
